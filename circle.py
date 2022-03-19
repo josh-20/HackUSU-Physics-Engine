@@ -1,6 +1,6 @@
 import pygame
 class circle:
-    def __init__(self, pos=0, velocity=0, mass=0, static=False, netForce=0, radius=100):
+    def __init__(self, pos=(0.0, 0.0), velocity=(0.0, 0.0), mass=0, static=False, netForce=0, radius=100):
          self.pos = pos
          self.velocity = velocity
          self.mass = mass

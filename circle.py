@@ -25,4 +25,7 @@ class circle:
     def draw(self, screen):
         pygame.draw.circle(screen, (255, 255, 255), tuple(map(int, self.pos)), int(self.radius))
 
+    def type(self):
+        return "circle"
+
 

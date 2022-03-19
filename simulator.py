@@ -9,10 +9,13 @@ class simulator:
     def __init__(self):
         self.physics_objects = []
 
-        self.physics_objects.append(circle(pos=(150,400), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(.1, 0.0), radius=50.0))
-        self.physics_objects.append(circle(pos=(250,300), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(.1, 0.0), radius=50.0))
-        self.physics_objects.append(circle(pos=(350,200), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(.1, 0.0), radius=50.0))
-        self.physics_objects.append(circle(pos=(450,100), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(.1, 0.0), radius=50.0))
+        self.physics_objects.append(circle(pos=(650, 600), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(.1, 0.0), radius=50.0))
+        self.physics_objects.append(circle(pos=(150, 500), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(.1, 0.0), radius=50.0))
+        self.physics_objects.append(circle(pos=(250,400), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(.1, 0.0), radius=50.0))
+        self.physics_objects.append(circle(pos=(350,300), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(.1, 0.0), radius=50.0))
+        self.physics_objects.append(circle(pos=(450,200), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(.1, 0.0), radius=50.0))
+        self.physics_objects.append(circle(pos=(550,100), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(.1, 0.0), radius=50.0))
+
 
 
         self.physics_objects.append(line(startpos=(1.0, 0.0), endpos=(0.0, 700.0), static=True))

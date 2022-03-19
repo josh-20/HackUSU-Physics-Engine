@@ -7,12 +7,12 @@ from helper import *
 class simulator:
     def __init__(self):
         self.physics_objects = []
-        self.physics_objects.append(circle(pos=(50.0, 50.0), velocity=(4.0, 4.0), mass=1.0, static=False, netForce=(0.0, 6.0), radius=50.0))
+        self.physics_objects.append(circle(pos=(150.0, 350.0), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(0.0, 1.0), radius=50.0))
         self.physics_objects.append(line(startpos=(1.0, 0.0), endpos=(0.0, 700.0), static=True))
         self.physics_objects.append(line(startpos=(0.0, 701.0), endpos=(1100.0, 700.0), static=True))
         self.physics_objects.append(line(startpos=(1101.0, 0.0), endpos=(1100.0, 700.0), static=True))
         self.physics_objects.append(line(startpos=(0.0, 1.0), endpos=(1100.0, 0.0), static=True))
-        self.physics_objects.append(line(startpos=(0.0, 1.0), endpos=(1100.0, 0.0), static=True))
+        # self.physics_objects.append(line(startpos=(400.0, 400.0), endpos=(600.0, 500.0), static=True))
 
     def render(self, screen):
         for physics_object in self.physics_objects:

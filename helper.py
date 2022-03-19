@@ -7,6 +7,7 @@ def Tadd(a, b):
 
     return tuple(c)
 
+
 # Divides a tuple by a float
 def TdivF(a, f):
     c = []
@@ -14,6 +15,7 @@ def TdivF(a, f):
         c.append(a[i]/f)
 
     return tuple(c)
+
 
 # distance between 2 (x, y) tuples
 def distance(a, b):

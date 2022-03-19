@@ -15,6 +15,7 @@ if __name__ == '__main__':
     physics_sim = simulator()
 
     while True:
+        screen.fill(0x000000)
         physics_sim.update()
         physics_sim.render(screen)
 

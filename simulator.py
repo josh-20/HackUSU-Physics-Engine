@@ -6,9 +6,14 @@ from helper import *
 class simulator:
     def __init__(self):
         self.physics_objects = []
-        self.physics_objects.append(circle())
+        self.physics_objects.append(circle(pos=(0.0, 0.0), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(1.0, 0.0), radius=100.0))
         print(type(self.physics_objects))
         pass
+
+    def render(self, screen):
+
+        for physics_object in self.physics_objects:
+            physics_object.draw(screen)
 
     def update(self):
         for physics_object in self.physics_objects:
@@ -16,10 +21,6 @@ class simulator:
             for other_object in self.physics_objects:
                 if physics_object != other_object:
                     self.do_they_collide(physics_object, other_object)
-
-    def render(self, screen):
-        for physics_object in self.physics_objects:
-            physics_object.draw(screen)
 
     def do_they_collide(self, object1, object2):
         if object1.type() == "circle" and object2.type() == "circle":
@@ -29,8 +30,10 @@ class simulator:
             if new_d < target_d:
                 go_back_factor = 1 - abs(prev_d - target_d) / abs(new_d - prev_d)
                 object1.pos = Tadd(object1.pos, scalar_mult(-go_back_factor, object1.velocity))
+
+                object1.velocity
                 return True
-    
+
 
     def add_physics_object(self, physics_object):
         self.physics_objects.append(physics_object)

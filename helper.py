@@ -21,11 +21,7 @@ def TdivF(a, f):
 
 # distance between 2 (x, y) tuples
 def distance(a, b):
-    c = []
-    for i in range(len(a)):
-        c.append((a[i]**2 + b[i]**2)**.5)
-
-    return tuple(c)
+    return ((a[0] - b[0])**2 + (b[1] - a[1])**2)**.5
 
 
 def scalar_mult(a, b):
@@ -42,4 +38,9 @@ def dot_product(vector1, vector2):
 
 
 def get_angle(vector1, vector2):
-    return acos(dot_product(vector1, vector2))
+    magnitudes = distance((0.0, 0.0), vector1) * distance((0.0, 0.0), vector2)
+    angle = acos(dot_product(vector1, vector2) / magnitudes)
+    if angle > pi / 2:
+        angle = pi - angle
+    return angle
+

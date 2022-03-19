@@ -25,4 +25,7 @@ class line:
     def draw(self, screen):
         pygame.draw.line(screen, (255, 255, 255), self.startpos, self.endpos)
 
+    def type(self):
+        return "line"
+
 

@@ -16,10 +16,10 @@ class circle:
         self.netForce += forceVector
 
     def update(self, time_step=1.0):
-
-        self.pos = Tadd(scalar_mult(time_step, self.velocity), self.pos)
-        acceleration = TdivF(self.netForce, self.mass)
-        self.velocity = Tadd(self.velocity, scalar_mult(time_step, acceleration))
+        if not self.static:
+            self.pos = Tadd(scalar_mult(time_step, self.velocity), self.pos)
+            acceleration = TdivF(self.netForce, self.mass)
+            self.velocity = Tadd(self.velocity, scalar_mult(time_step, acceleration))
 
     def draw(self, screen):
         pygame.draw.circle(screen, self.color, tuple(map(int, self.pos)), int(self.radius))

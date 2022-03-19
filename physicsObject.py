@@ -1,3 +1,5 @@
+# Physics object interface
+
 class physicsObj:
     def __init__(self):
          self.pos = 0.0

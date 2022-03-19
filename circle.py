@@ -17,8 +17,6 @@ class circle:
     def update(self):
 
         self.pos = Tadd(self.velocity, self.pos)
-
-
         acceleration = TdivF(self.netForce, self.mass)
         self.velocity = Tadd(self.velocity, acceleration)
 

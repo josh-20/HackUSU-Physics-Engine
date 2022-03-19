@@ -44,3 +44,7 @@ def get_angle(vector1, vector2):
         angle = pi - angle
     return angle
 
+
+def normalize(vector):
+    magnitude = distance((0.0, 0.0), vector)
+    return tuple([vector[1] / magnitude, -vector[0] / magnitude])

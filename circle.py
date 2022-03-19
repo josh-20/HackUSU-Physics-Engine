@@ -1,5 +1,5 @@
 import pygame
-class cirlce:
+class circle:
     def __init__(self):
          self.pos = 0.0
          self.velocity = 0.0
@@ -12,5 +12,6 @@ class cirlce:
         self.netForce += forceVector
 
     def draw(self):
-        pygame.draw.circle(Surface, color, self.pos, radius, width=0)
+       # pygame.draw.circle(Surface, color, self.pos, radius, width=0)
+       pass
 

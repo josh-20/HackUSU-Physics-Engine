@@ -8,8 +8,19 @@ import random
 class simulator:
     def __init__(self):
         self.physics_objects = []
-        self.physics_objects.append(circle(pos=(500.0, 50.0), velocity=(2.0, 2.0), mass=1.0, static=False, netForce=(0.1, 0.0), radius=50.0))
-        # self.physics_objects.append(circle(pos=(600.0, 50.0), velocity=(2.0, 2.0), mass=1.0, static=False, netForce=(0.1, 0.0), radius=50.0))
+
+        self.physics_objects.append(circle(pos=(random.randint(100, 1000), random.randint(100, 600)), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(.1, 0.0), radius=50.0))
+        self.physics_objects.append(
+            circle(pos=(random.randint(100, 1000), random.randint(100, 600)), velocity=(0.0, 0.0), mass=1.0,
+                   static=False, netForce=(.1, 0.0), radius=50.0))
+        self.physics_objects.append(
+            circle(pos=(random.randint(100, 1000), random.randint(100, 600)), velocity=(0.0, 0.0), mass=1.0,
+                   static=False, netForce=(.1, 0.0), radius=50.0))
+        self.physics_objects.append(
+            circle(pos=(random.randint(100, 1000), random.randint(100, 600)), velocity=(0.0, 0.0), mass=1.0,
+                   static=False, netForce=(.1, 0.0), radius=50.0))
+
+
         self.physics_objects.append(line(startpos=(1.0, 0.0), endpos=(0.0, 700.0), static=True))
         self.physics_objects.append(line(startpos=(0.0, 701.0), endpos=(1100.0, 700.0), static=True))
         self.physics_objects.append(line(startpos=(1101.0, 0.0), endpos=(1100.0, 700.0), static=True))
@@ -27,14 +38,14 @@ class simulator:
 
     def update(self):
         for physics_object in self.physics_objects:
-            # physics_object.update()
+            physics_object.update()
             for other_object in self.physics_objects:
                 if physics_object != other_object:
                     self.move_and_collide(physics_object, other_object)
 
     def move_and_collide(self, object1, object2):
         go_back_factor = 1.0
-        new_color = object1.color
+        #new_color = object1.color
         new_velocity = object1.velocity
         v_changed = False
         if object1.type() == "circle" and object2.type() == "circle":
@@ -42,7 +53,7 @@ class simulator:
             new_d = distance(object1.pos, object2.pos)
             target_d = object1.radius + object2.radius
             if new_d < target_d:
-                go_back_factor = 1 - abs(prev_d - target_d) / abs(new_d - prev_d)
+                go_back_factor = abs(prev_d - target_d) / abs(new_d - prev_d)
                 object1.pos = Tadd(object1.pos, scalar_mult(-go_back_factor, object1.velocity))
                 # reflect velocity angle
                 wall = Tadd(object2.pos, scalar_mult(-1, object1.pos))
@@ -78,7 +89,7 @@ class simulator:
         #     object1.update(time_step=go_back_factor)
         object1.update(time_step=go_back_factor)
         object1.velocity = new_velocity
-        object1.color = new_color
+        #object1.color = new_color
 
     def add_physics_object(self, physics_object):
         self.physics_objects.append(physics_object)

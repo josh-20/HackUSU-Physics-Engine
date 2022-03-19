@@ -23,6 +23,11 @@ class circle:
 
     def draw(self, screen):
         pygame.draw.circle(screen, self.color, tuple(map(int, self.pos)), int(self.radius))
+        HackUSU = pygame.image.load("HackUSU.png")
+        scale = self.radius/(150*1.1)
+        HackUSU = pygame.transform.scale(HackUSU, (300*scale, 138*scale))
+
+        screen.blit(HackUSU, (int(self.pos[0]) - 45, int(self.pos[1])-25))
 
     def type(self):
         return "circle"

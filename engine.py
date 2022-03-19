@@ -6,6 +6,8 @@ from simulator import simulator
 DISPLAY_WIDTH = 1100
 DISPLAY_HEIGHT = 700
 
+
+
 if __name__ == '__main__':
     pygame.init()
     screen = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
@@ -15,7 +17,7 @@ if __name__ == '__main__':
     physics_sim = simulator()
 
     while True:
-        screen.fill(0x000000)
+        screen.fill((0, 38, 58))
         physics_sim.update()
         physics_sim.render(screen)
 

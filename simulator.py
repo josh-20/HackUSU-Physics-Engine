@@ -8,7 +8,7 @@ import random
 class simulator:
     def __init__(self):
         self.physics_objects = []
-        self.physics_objects.append(circle(pos=(50.0, 50.0), velocity=(0.2, 0.0), mass=1.0, static=False, netForce=(1.0, 1.0), radius=50.0))
+        self.physics_objects.append(circle(pos=(500.0, 50.0), velocity=(2.0, 2.0), mass=1.0, static=False, netForce=(0.1, 0.0), radius=50.0))
         self.physics_objects.append(line(startpos=(1.0, 0.0), endpos=(0.0, 700.0), static=True))
         self.physics_objects.append(line(startpos=(0.0, 701.0), endpos=(1100.0, 700.0), static=True))
         self.physics_objects.append(line(startpos=(1101.0, 0.0), endpos=(1100.0, 700.0), static=True))
@@ -29,9 +29,12 @@ class simulator:
             physics_object.update()
             for other_object in self.physics_objects:
                 if physics_object != other_object:
-                    self.do_they_collide(physics_object, other_object)
+                    self.move_and_collide(physics_object, other_object)
 
-    def do_they_collide(self, object1, object2):
+    def move_and_collide(self, object1, object2):
+        go_back_factor = 1.0
+        new_color = object1.color
+        new_velocity = object1.velocity
         if object1.type() == "circle" and object2.type() == "circle":
             prev_d = distance(Tadd(object1.pos, scalar_mult(-1, object1.velocity)), object2.pos)
             new_d = distance(object1.pos, object2.pos)
@@ -48,17 +51,20 @@ class simulator:
             y = m * x + b
             if (object2.startpos[0] < x < object2.endpos[0] or object2.startpos[1] < y < object2.endpos[1]) and distance(object1.pos, tuple([x, y])) < object1.radius:
                 # put circle exactly on the line
-                new_d = distance(object1.pos, tuple([x, y]))
-                prev_d = distance(Tadd(object1.pos, scalar_mult(-1, object1.velocity)), tuple([x, y]))
+                new_d = distance(Tadd(object1.pos, object1.velocity), tuple([x, y]))
+                prev_d = distance(object1.pos, tuple([x, y]))
                 target_d = object1.radius
                 if new_d < target_d:
-                    go_back_factor = 1 - abs(prev_d - target_d) / abs(new_d - prev_d)
+                    go_back_factor = abs(prev_d - target_d) / abs(new_d - prev_d)
                     object1.pos = Tadd(object1.pos, scalar_mult(-go_back_factor, object1.velocity))
                     # reflect velocity angle
                     wall = Tadd(object2.endpos, scalar_mult(-1, object2.startpos))
                     normal = normalize(wall)
-                    object1.velocity = Tadd(object1.velocity, scalar_mult(-2 * dot_product(normal, object1.velocity), normal))
-                    object1.color = self.colors[random.randint(0,len(self.colors)-1)]
+                    new_velocity = Tadd(object1.velocity, scalar_mult(-2 * dot_product(normal, object1.velocity), normal))
+                    new_color = self.colors[random.randint(0,len(self.colors)-1)]
+        object1.update(time_step=go_back_factor)
+        object1.color = new_color
+        object1.velocity = new_velocity
 
     def add_physics_object(self, physics_object):
         self.physics_objects.append(physics_object)

@@ -3,19 +3,19 @@ from helper import *
 
 
 class line:
-    def __init__(self, startpos=(0.0, 0.0), endpos=(0.0, 0.0), static=True):
+    def __init__(self, startpos=(0.0, 0.0), endpos=(0.0, 0.0), static=True, color=""):
         self.startpos = startpos
         self.endpos = endpos
-        # self.velocity = velocity
-        # self.mass = mass
+        self.color = color
+        self.velocity = (0.0, 0.0)
+        self.mass = 0.0
         self.static = static
-        # self.netForce = netForce
-        # self.radius = radius
+        self.netForce = (0.0, 0.0)
 
     # def applyforce(self, forceVector):
     #     self.netForce += forceVector
     #
-    def update(self):
+    def update(self, time_step=1.0):
         # self.pos = Tadd(self.velocity, self.pos)
         #
         # acceleration = TdivF(self.netForce / self.mass)

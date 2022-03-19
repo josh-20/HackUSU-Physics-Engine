@@ -1,12 +1,12 @@
 import pygame
 class circle:
-    def __init__(self):
-         self.pos = 0.0
-         self.velocity = 0.0
-         self.mass = 0.0
-         self.static = False
-         self.netForce = 0.0
-         self.radius = 0.0
+    def __init__(self, pos=0, velocity=0, mass=0, static=False, netForce=0, radius=100):
+         self.pos = pos
+         self.velocity = velocity
+         self.mass = mass
+         self.static = static
+         self.netForce = netForce
+         self.radius = radius
     
     def applyforce(self, forceVector):
         self.netForce += forceVector

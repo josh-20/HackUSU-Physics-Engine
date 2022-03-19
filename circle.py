@@ -3,8 +3,9 @@ from helper import *
 
 
 class circle:
-    def __init__(self, pos=(0.0, 0.0), velocity=(0.0, 0.0), mass=1.0, static=False, netForce=(0.0, 0.0), radius=100.0):
+    def __init__(self, pos=(0.0, 0.0), velocity=(0.0, 0.0), mass=0.0, static=False, netForce=(0.0, 0.0), radius=100.0, color=""):
         self.pos = pos
+        self.color = color
         self.velocity = velocity
         self.mass = mass
         self.static = static
@@ -21,7 +22,7 @@ class circle:
         self.velocity = Tadd(self.velocity, acceleration)
 
     def draw(self, screen):
-        pygame.draw.circle(screen, (255, 255, 255), tuple(map(int, self.pos)), int(self.radius))
+        pygame.draw.circle(screen, (self.color), tuple(map(int, self.pos)), int(self.radius))
 
     def type(self):
         return "circle"

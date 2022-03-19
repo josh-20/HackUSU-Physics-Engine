@@ -18,7 +18,7 @@ class circle:
 
         self.pos = Tadd(self.velocity, self.pos)
 
-        acceleration = TdivF(self.netForce/self.mass)
+        acceleration = TdivF(self.netForce, self.mass)
         self.velocity = Tadd(self.velocity, acceleration)
 
     def draw(self, screen):

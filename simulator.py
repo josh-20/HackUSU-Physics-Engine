@@ -23,8 +23,14 @@ class simulator:
 
     def do_they_collide(self, object1, object2):
         if object1.type() == "circle" and object2.type() == "circle":
-            if distance(object1.pos, object2.pos) < object1.radius + object2.radius:
+            prev_d = distance(Tadd(object1.pos, scalar_mult(-1, object1.velocity)), object2.pos)
+            new_d = distance(object1.pos, object2.pos)
+            target_d = object1.radius + object2.radius
+            if new_d < target_d:
+                go_back_factor = 1 - abs(prev_d - target_d) / abs(new_d - prev_d)
+                object1.pos = Tadd(object1.pos, scalar_mult(-go_back_factor, object1.velocity))
                 return True
+    
 
     def add_physics_object(self, physics_object):
         self.physics_objects.append(physics_object)

@@ -24,3 +24,7 @@ def distance(a, b):
         c.append((a[i]**2 + b[i]**2)**.5)
 
     return tuple(c)
+
+
+def scalar_mult(a, b):
+    return tuple([a * b[0], a * b[1]])
